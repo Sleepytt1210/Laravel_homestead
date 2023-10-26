@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class TestController extends Controller
 {
     public function test(Request $request) {
-        dd($request->all());
+        return route('/user');
     }
 }

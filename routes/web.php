@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,7 @@ Route::resource('blog', BlogController::class)->except('index');
 Route::get('/user', [UserController::class, 'show'])->name('user.info');
 
 # Update user page
-Route::put('/user', [UserController::class, 'update'])->name('user.update');
+Route::put('/user', [UserController::class, 'update'])->name('user.info.update');
 
 # Get user avatar
 Route::get('/user/avatar', [UserController::class, 'avatarShow'])->name('user.avatar');
@@ -69,4 +70,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::any('/test', [TestController::class, 'test']);
+Route::any('/test', [TestController::class, 'test'])->name('test')->withoutMiddleware(VerifyCsrfToken::class);

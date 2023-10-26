@@ -8,16 +8,19 @@
             <div class="col-sm-3">
                 @include('common.user-menu', ['nav' => 'info'])
             </div>
-            <div class="col-sm-9 p-0">
+            <div class="col-sm-7 p-0">
                 <div class="card">
                     <div class="card-header bg-white">
                         <h3 class="card-title">Personal Details</h2>
                     </div>
                     <div class="card-body">
-                        <form class="col-md-6 offset-3">
+                        @include('common.status')
+                        <form  method="POST" action="{{ route('user.info.update') }}" class="col-md-6 offset-3">
+                            @csrf
+                            @method('PUT')
                             <div class="form-group">
-                                <label for="username" class="fs-14 font-weight-bold">Username</label>
-                                <input type="text" name="username" placeholder="Please enter your username" value="{{ Auth::user()->name }}" class="form-control form-control-sm" id="username">
+                                <label for="name" class="fs-14 font-weight-bold">Name</label>
+                                <input type="text" name="name" placeholder="Please enter your user's name" value="{{ Auth::user()->name }}" class="form-control form-control-sm" id="name">
                             </div>
                             <div class="form-group">
                                 <label for="email" class="fs-14 font-weight-bold">Email</label>

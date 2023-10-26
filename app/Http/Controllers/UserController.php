@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -16,8 +18,19 @@ class UserController extends Controller
     /**
      * Update user profile
      */
-    public function update() {
-        //
+    public function update(Request $request) {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        
+        // User id 
+        $uid = Auth::user()->id;
+        $rowUpdated = DB::table('users')->where('id', $uid)->update(['name'=> $name,'email'=> $email]);
+
+        if ($rowUpdated) {
+            return back()->with(['success' => 'Profile updated!']);
+        }
+
+        return back()->withErrors(['Profile is not updated!']);
     }
 
     /**
