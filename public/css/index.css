@@ -1,0 +1,14 @@
+.jumbotron {
+    background-color: #1a3766 !important;
+}
+
+.article-author {
+    color: rgb(50, 75, 182);
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.article-time {
+    color: grey;
+    font-size: 14px;
+}

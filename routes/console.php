@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('sms:send {user} {--Q|queue}', function ($queue) {
+    dd($queue);
+})->purpose('Send a sms to the user');
